@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       elevation: MaterialStateProperty.resolveWith((states) => 0),
       backgroundColor: MaterialStateColor.resolveWith(
-        (states) => Color.fromARGB(255, 240, 241, 241),
+        (states) => const Color.fromARGB(255, 240, 241, 241),
       ),
     );
 
@@ -106,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Stack(
                                     children: [
                                       SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         height: 250,
                                         child: ClipRRect(
                                           borderRadius:
@@ -247,7 +249,8 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      floatingActionButton: CustomBottomNavigationBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const CustomBottomNavigationBar(),
     );
   }
 }
@@ -259,42 +262,45 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+         
+          Container(
             height: 75,
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(40),
             ),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomNaviagtionIcons(icon: Icons.home),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomNaviagtionIcons(icon: Icons.explore_outlined),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomNaviagtionIcons(icon: Icons.star_border),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomNaviagtionIcons(icon: Icons.person),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                ],
-              ),
-            )),
-      ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                SizedBox(
+                  width: 15,
+                ),
+                CustomNaviagtionIcons(icon: Icons.home),
+                SizedBox(
+                  width: 15,
+                ),
+                CustomNaviagtionIcons(icon: Icons.explore_outlined),
+                SizedBox(
+                  width: 15,
+                ),
+                CustomNaviagtionIcons(icon: Icons.star_border),
+                SizedBox(
+                  width: 15,
+                ),
+                CustomNaviagtionIcons(icon: Icons.person),
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
