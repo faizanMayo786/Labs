@@ -1,4 +1,4 @@
-List locations = [
+List locationsSlides = [
   {
     'image':
         'https://cdn.pixabay.com/photo/2014/08/12/00/01/santorini-416136_960_720.jpg',
@@ -27,4 +27,18 @@ List locations = [
     'stay': 'Roof Tops',
     'rating': '4,6',
   },
+];
+List topLocations = [
+  {
+    'image':
+        'https://cdn.pixabay.com/photo/2020/04/29/12/15/landscape-5108674_960_720.jpg',
+    'title': 'Lambok',
+    'subtitle': 'NTB',
+  },
+  {
+    'image':
+        'https://cdn.pixabay.com/photo/2019/08/23/10/32/situ-cileunca-4425481_960_720.jpg',
+    'title': 'Bandung',
+    'subtitle': 'West Java',
+  }
 ];
