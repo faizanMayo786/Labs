@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 class BlurredBox extends StatelessWidget {
   BlurredBox({required this.child, Key? key}) : super(key: key);
   Widget child;
-  var borderSide = BorderSide(width: 2, color: Colors.white54);
+  final borderSide = const BorderSide(width: 2, color: Colors.white54);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +18,7 @@ class BlurredBox extends StatelessWidget {
             right: borderSide,
             bottom: borderSide,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius: const BorderRadius.all( Radius.circular(10))),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: BackdropFilter(

@@ -1,12 +1,12 @@
+
 import 'package:flutter/material.dart';
-import 'package:travel_ui/dummy_data.dart';
 
 import '../core/constants.dart';
 import 'blured_box.dart';
 
 class CardItem extends StatelessWidget {
-   CardItem({required this.item, Key? key}) : super(key: key);
-  var item;
+  const CardItem({required this.item, Key? key}) : super(key: key);
+  final dynamic item;
   @override
   Widget build(BuildContext context) {
     return Card(

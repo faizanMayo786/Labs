@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_ui/screen/detail_screen.dart';
 import 'package:travel_ui/screen/homepage_screen.dart';
 
 void main() {
@@ -9,7 +10,7 @@ void main() {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
-  runApp(const MyApp());
+  runApp(const DetailScreen());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: SafeArea(
+      home: const SafeArea(
         child:  MyHomePage(title: 'Discover'),
       ),
     );

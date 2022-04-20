@@ -57,7 +57,7 @@ class CustomNaviagtionIcons extends StatelessWidget {
     required this.icon,
   }) : super(key: key);
 
-  final icon;
+  final dynamic icon;
 
   @override
   Widget build(BuildContext context) {

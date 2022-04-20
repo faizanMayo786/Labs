@@ -1,13 +1,10 @@
-import 'dart:ui';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_ui/widgets/blured_box.dart';
-import 'package:travel_ui/widgets/slider_item.dart';
 
 import '../core/constants.dart';
 import '../dummy_data.dart';
 import '../widgets/navigation_bar_buttons.dart';
+import '../widgets/slider_item.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -97,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   'Top Destinations',
                                   style: TextStyle(
                                     fontSize: 20,
@@ -113,36 +110,77 @@ class _MyHomePageState extends State<MyHomePage> {
                                 )
                               ],
                             ),
-                            Container(
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
                               width: 400,
-                              height: 400,
-                              child: GridView(
-                                padding: const EdgeInsets.all(25),
-                                children: topLocations.map(
-                                  (e) {
-                                    return Card(
-                                      child: ListTile(
-                                        dense: true,
-                                        leading: Container(
-                                          // hei
-                                          child: Image.network(
-                                            e['image'],
+                              height: 200,
+                              child: GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 10,
+                                  mainAxisExtent: 100,
+                                  childAspectRatio: 5 / 2,
+                                  crossAxisCount: 2,
+                                ),
+                                itemCount: topLocations.length,
+                                itemBuilder: (context, index) => Container(
+                                  height: 100,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15))),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: ConstrainedBox(
+                                            constraints: const 
+                                            BoxConstraints(
+                                              minWidth: 90,
+                                              minHeight: 300,
+                                              maxWidth: 90,
+                                              maxHeight: 300,
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(20)),
+                                              child: Image.network(
+                                                topLocations[index]['image'],
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        title: Text(e['title'].toString()),
-                                      ),
-                                    );
-                                  },
-                                ).toList(),
-                                gridDelegate:
-                                    const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 310,
-                                  // childAspectRatio: 3 / 2,
-                                  // crossAxisSpacing: 10,
-                                  mainAxisSpacing: 50,
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              topLocations[index]['title']
+                                                  .toString(),
+                                            ),
+                                            Text(
+                                              topLocations[index]['subtitle']
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )
