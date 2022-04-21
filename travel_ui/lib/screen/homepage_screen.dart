@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_ui/screen/detail_screen.dart';
 
 import '../core/constants.dart';
 import '../dummy_data.dart';
@@ -79,7 +80,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             Size(MediaQuery.of(context).size.width, 350)),
                         child: Swiper(
                           itemBuilder: (BuildContext context, int index) {
-                            return CardItem(item: locationsSlides[index]);
+                            return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailScreen(counter: index),
+                                    ),
+                                  );
+                                },
+                                child: CardItem(item: locationsSlides[index]));
                           },
                           itemCount: locationsSlides.length,
                           scale: 0.8,
@@ -104,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   'View All',
                                   style: TextStyle(
-                                    color: color,
+                                    color: color1,
                                     fontSize: 12,
                                   ),
                                 )
@@ -114,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 20,
                             ),
                             SizedBox(
-                              width: 400,
+                              width: 500,
                               height: 200,
                               child: GridView.builder(
                                 gridDelegate:
@@ -137,8 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: ConstrainedBox(
-                                            constraints: const 
-                                            BoxConstraints(
+                                            constraints: const BoxConstraints(
                                               minWidth: 90,
                                               minHeight: 300,
                                               maxWidth: 90,
@@ -191,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: const CustomBottomNavigationBar(),
     );
   }

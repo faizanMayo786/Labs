@@ -39,7 +39,7 @@ class CardItem extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 250,
                   child: Hero(
-                    tag: '/main',
+                    tag: 'main',
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
@@ -96,7 +96,7 @@ class CardItem extends StatelessWidget {
                               Icon(
                                 Icons.bed,
                                 size: 20,
-                                color: color,
+                                color: color1,
                               ),
                               const SizedBox(
                                 width: 5,
