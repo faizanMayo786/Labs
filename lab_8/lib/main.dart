@@ -1,22 +1,38 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:lab_8/screen2.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Screen1(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class Screen1 extends StatefulWidget {
+  const Screen1({Key? key}) : super(key: key);
+
+  @override
+  State<Screen1> createState() => _Screen1State();
+}
+
+class _Screen1State extends State<Screen1> {
+  Position? position;
   @override
   initState() {
-    _determinePosition();
+    Future.delayed(Duration(seconds: 0), () async {
+      setState(() {});
+      position = await _determinePosition();
+    });
     super.initState();
   }
 
@@ -25,23 +41,22 @@ class _MyAppState extends State<MyApp> {
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
+      print('Location services are disabled.');
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
+        print('Location permissions are denied');
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
+      print(
           'Location permissions are permanently denied, we cannot request for permission anymore');
     }
     return await Geolocator.getCurrentPosition();
   }
 
-  late Position position;
   getLocation() async {
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
@@ -53,32 +68,44 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     getLocation();
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Expanded(
-                    child: Text(
-                      '$position',
-                      style: const TextStyle(fontSize: 30),
-                    ),
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Center(
+                child: Text(
+                  '$position',
+                  style: const TextStyle(fontSize: 30),
                 ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: getLocation,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                  getLocation();
+                },
+                child: Container(
+                  width: 200,
+                  child: FittedBox(
                     child: const Text(
                       'GetLocation Current',
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Screen2()));
+                },
+                child: const Text(
+                  'GotoPage-2',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ],
           ),
         ),
       ),
