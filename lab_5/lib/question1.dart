@@ -4,20 +4,27 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final player = AudioPlayer();
 
-  await player.play(UrlSource('asset/note1.wav'), mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note2.wav'), mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note3.wav'), mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note4.wav'), mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note5.wav'),mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note6.wav'), mode: PlayerMode.mediaPlayer);
-  await player.play(UrlSource('asset/note7.wav'), mode: PlayerMode.mediaPlayer);
-  
+  await player.play(UrlSource('assets/note1.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note2.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note3.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note4.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note5.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note6.wav'),
+      mode: PlayerMode.mediaPlayer);
+  await player.play(UrlSource('assets/note7.wav'),
+      mode: PlayerMode.mediaPlayer);
 
-  // runApp(const MaterialApp(
-  //   home: const BallPage(),
-  // ));
+  runApp(const MaterialApp(
+    home: const BallPage(),
+  ));
 }
 
 class BallPage extends StatefulWidget {
