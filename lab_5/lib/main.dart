@@ -44,8 +44,14 @@ class MyApp extends StatelessWidget {
         color: color,
         child: TextButton(
           onPressed: () async {
-            AudioCache audioPlayer = AudioCache();
-            await audioPlayer.play('note$i.wav');
+            // AudioCache audioPlayer = AudioCache();
+            // await audioPlayer.play('note$i.wav');
+            final player = AudioPlayer();
+            
+            // url.url = 'note$i.wav';
+            await player.play(UrlSource('assets/note$i.wav'),
+                // mode: PlayerMode.mediaPlayer
+                );
           },
           child: const Text(""),
         ),
